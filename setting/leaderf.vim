@@ -5,7 +5,7 @@
 
 " config project root path, only auto gene gtags file while have followed dir
 " .git .svn .hg 
-"let g:Lf_RootMarkers=['.git','.hg','.svn']
+let g:Lf_RootMarkers=['.git','.hg','.svn']
 let g:Lf_GtagsAutoGenerate=1
 
 let g:Lf_Gtagsconf = '/usr/local/share/gtags/gtags.conf'  

@@ -10,9 +10,14 @@ Plug 'Yggdroot/LeaderF',{'do': './install.sh'}
 Plug 'morhetz/gruvbox'
 Plug 'Shougo/defx.nvim'
 
+"coc.vim yyds !!!!
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+"hight light
+Plug 'sheerun/vim-polyglot'
+
 call plug#end()
 
 source ~/.config/nvim/setting/custom.vim
 source ~/.config/nvim/setting/leaderf.vim
 source ~/.config/nvim/setting/defx.vim
+source ~/.config/nvim/setting/cocconf.vim
