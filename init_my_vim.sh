@@ -35,7 +35,7 @@ function pre_install_env(){
 
 function pre_check_env(){
     # check for python install 
-    if ! [ -x "$(command -v python3)" ]; then
+    if ! [ -x "$(command -v python3)" ];then
         curl https://raw.githubusercontent.com/CloudGuan/bashboot/master/python_boot.sh | bash 
         
         if [ $? -gt 0 ];then
@@ -66,7 +66,7 @@ function pre_check_env(){
     fi 
 
     # checkfor clangd 
-    if ! [ -x "$(command -v clangd)" ]; then 
+    if ! [ -x "$(command -v clangd)" ];then 
         wget https://github.com/clangd/clangd/releases/download/11.0.0/clangd-linux-11.0.0.zip
         if [ $? -gt 0 ];then
             echo "下载clangd 失败请手动准备好 https://github.com/clangd/clangd/releases/download/11.0.0/clangd-linux-11.0.0.zip 相关依赖在进行安装"
