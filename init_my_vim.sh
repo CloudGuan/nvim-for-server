@@ -36,8 +36,13 @@ function pre_install_env(){
 function pre_check_env(){
     # check for python install 
     if ! [ -x "$(command -v python3)" ];then
-        curl https://raw.githubusercontent.com/CloudGuan/bashboot/master/python_boot.sh | bash 
-        
+        echo "开始安装python3"
+        curl -O https://raw.githubusercontent.com/CloudGuan/bashboot/master/python_boot.sh
+        if [ $? -gt 0  ];then
+            echo "python 安装脚本下载失败 请手动执行"
+            exit 1
+        fi 
+        sh python_boot.sh
         if [ $? -gt 0 ];then
             echo "python 安装失败 请手动执行 https://raw.githubusercontent.com/CloudGuan/bashboot/master/python_boot.sh 后再尝试"
             exit 1
@@ -46,6 +51,7 @@ function pre_check_env(){
         pip3 install pynvim
         pip3 install pygments
         pip3 install neovim
+        rm python_boot.sh
     fi 
 
     # check for glibc 2.18
