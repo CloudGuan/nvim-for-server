@@ -30,7 +30,9 @@ function pre_install_env(){
     yum install -y fuse fuse-devel
     yum install -y zip 
     #nodejs 支持
-    curl --fail -LSs https://install-node.now.sh/latest | sh 
+    if ! [ -x "$(command -v node)" ];then
+        curl --fail -LSs https://install-node.now.sh/latest | sh 
+    fi 
 }
 
 function pre_check_env(){
@@ -73,11 +75,13 @@ function pre_check_env(){
 
     # checkfor clangd 
     if ! [ -x "$(command -v clangd)" ];then 
-        wget https://github.com/clangd/clangd/releases/download/11.0.0/clangd-linux-11.0.0.zip
-        if [ $? -gt 0 ];then
-            echo "下载clangd 失败请手动准备好 https://github.com/clangd/clangd/releases/download/11.0.0/clangd-linux-11.0.0.zip 相关依赖在进行安装"
-            exit 1
-        fi 
+        if [ ! -f clangd-linux-11.0.0.zip ];then
+            wget https://github.com/clangd/clangd/releases/download/11.0.0/clangd-linux-11.0.0.zip
+            if [ $? -gt 0 ];then
+                echo "下载clangd 失败请手动准备好 https://github.com/clangd/clangd/releases/download/11.0.0/clangd-linux-11.0.0.zip 相关依赖在进行安装"
+                exit 1
+            fi 
+        fi
 
         unzip clangd-linux-11.0.0.zip
         mv clangd_11.0.0/ /usr/local/clang
@@ -88,7 +92,13 @@ function pre_check_env(){
 
     # checkfor nvim
     if [ ! -f /usr/bin/nvim.appimage ];then
-        curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+        if [ ! -f nvim.appimage ];then
+            curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+            if [ $? -gt 0];then
+                echo "下载neovim失败 https://github.com/neovim/neovim/releases/latest/download/nvim.appimage 请手动下载"
+                exit 1
+            fi 
+        fi 
 
         chmod u+x nvim.appimage
 
