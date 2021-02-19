@@ -36,7 +36,7 @@ if [ -d ~/.config/nvim ];then
     tar -zcvf nvimconf.tar.gz ./nvim
     if [ $? -gt 0 ];then
         echo "备份nvim配置失败 请手动备份删除 ~/.config/nvim 之后在尝试执行此脚本"
-        exit(0)
+        exit 1
     fi 
     rm -rf ./nvim
     cd ../

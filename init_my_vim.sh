@@ -40,7 +40,7 @@ function pre_check_env(){
         
         if [ $? -gt 0 ];then
             echo "python 安装失败 请手动执行 https://raw.githubusercontent.com/CloudGuan/bashboot/master/python_boot.sh 后再尝试"
-            exit(1)
+            exit 1
         fi
         pip3 install --upgrade pip
         pip3 install pynvim
@@ -53,7 +53,7 @@ function pre_check_env(){
         wget http://ftp.gnu.org/gnu/glibc/glibc-2.18.tar.gz
         if [ $? -gt 0 ];then
             echo "下载glibc 失败请手动准备好相关依赖在进行安装"
-            exit(1)
+            exit 1
         fi 
 
         tar -xvf glibc-2.18.tar.gz 
@@ -70,7 +70,7 @@ function pre_check_env(){
         wget https://github.com/clangd/clangd/releases/download/11.0.0/clangd-linux-11.0.0.zip
         if [ $? -gt 0 ];then
             echo "下载clangd 失败请手动准备好 https://github.com/clangd/clangd/releases/download/11.0.0/clangd-linux-11.0.0.zip 相关依赖在进行安装"
-            exit(1)
+            exit 1
         fi 
 
         unzip clangd-linux-11.0.0.zip
@@ -88,7 +88,7 @@ function pre_check_env(){
 
         if [ $? -gt 0 ];then
             echo "下载neovim 失败请手动准备好 https://github.com/neovim/neovim/releases/latest/download/nvim.appimage 相关依赖在进行安装"
-            exit(1)
+            exit 1
         fi 
 
         yum remove vim
@@ -107,6 +107,6 @@ function pre_check_env(){
 pre_install_env
 if [ $? -gt 0 ];then
     echo "下载依赖，安装依赖失败，请手动执行"
-    exit(1)
+    exit 1
 fi 
 pre_check_env
