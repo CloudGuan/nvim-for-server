@@ -94,7 +94,7 @@ function pre_check_env(){
     if [ ! -f /usr/bin/nvim.appimage ];then
         if [ ! -f nvim.appimage ];then
             curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-            if [ $? -gt 0];then
+            if [ $? -gt 0 ];then
                 echo "下载neovim失败 https://github.com/neovim/neovim/releases/latest/download/nvim.appimage 请手动下载"
                 exit 1
             fi 
